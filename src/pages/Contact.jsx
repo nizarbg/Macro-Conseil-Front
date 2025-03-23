@@ -25,12 +25,12 @@ function Contact() {
     setResponseMessage("");
 
     try {
-      const response = await fetch("http://localhost:8080/api/email/send", {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/email/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
+    
       const result = await response.text();
       if (response.ok) {
         setResponseMessage("✅ Email sent successfully!");
@@ -42,7 +42,7 @@ function Contact() {
       setResponseMessage("❌ Error sending email.");
     } finally {
       setLoading(false);
-    }
+    }    
   };
 
   return (
